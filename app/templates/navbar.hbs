@@ -12,9 +12,26 @@
 
     <div class="collapse navbar-collapse" id="main-navbar">
       <ul class="nav navbar-nav">
-        {{#link-to 'index' tagName="li"}}<a href="">Home</a>{{/link-to}}
-        {{#link-to 'about' tagName="li"}}<a href="">About</a>{{/link-to}}
-        {{#link-to 'contact' tagName="li"}}<a href="">Contact</a>{{/link-to}}
+        {{#nav-link-to 'index'}}<a href="">Home</a>{{/nav-link-to}}
+        {{#nav-link-to 'libraries'}}<a href="">Libraries</a>{{/nav-link-to}}
+        {{#nav-link-to 'authors'}}<a href="">Authors</a>{{/nav-link-to}}
+        {{#nav-link-to 'books'}}<a href="">Books</a>{{/nav-link-to}}
+        
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        {{#nav-link-to 'about'}}<a href="">About</a>{{/nav-link-to}}
+        {{#nav-link-to 'contact'}}<a href="">Contact</a>{{/nav-link-to}}
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Admin<span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            {{#nav-link-to 'admin.invitations'}}<a href="">Invitations</a>{{/nav-link-to}}
+            {{#nav-link-to 'admin.contacts'}}<a href="">Contacts</a>{{/nav-link-to}}
+            {{#nav-link-to 'admin.seeder'}}<a href="">Seeder</a>{{/nav-link-to}}
+          </ul>
+        </li>
       </ul>
     </div>
   </div>

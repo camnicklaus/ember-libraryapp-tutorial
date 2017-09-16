@@ -20,6 +20,14 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+    firebase: {
+      apiKey: "AIzaSyC8zg8Txmel3EOG6oGNKvdD34ld2qKZFK8",
+      authDomain: "ember-library-tutorial-bef92.firebaseapp.com",
+      databaseURL: "https://ember-library-tutorial-bef92.firebaseio.com",
+      projectId: "ember-library-tutorial-bef92",
+      storageBucket: "",
+      messagingSenderId: "233429834290"
     }
   };
 
@@ -43,7 +51,9 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV['ember-faker'] = {
+      enabled: true
+    };
   }
 
   return ENV;

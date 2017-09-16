@@ -2,26 +2,39 @@
 
 <div class="row">
   <div class="col-md-6">
-    <div class="form-group {{emailSuccess}} has-feedback">
+    {{#if responseMessage}}
+      <div class="alert alert-success">
+        <br/>
+        <div class="well well-sm">Your message and contact has been sent</div>
+        <p>To: {{model.email}}</p>
+        <p>Message: {{model.message}}</p>
+        <p>Reference ID: {{model.id}}</p>
+      </div>
+
+    {{else}}
+
+    <div class="form-group {{if model.emailIsValid 'has-success'}} has-feedback">
       <label>Your email address</label>
-      {{input type="email" class="form-control" placeholder="Email" value=emailAddress}}
+      {{input type="email" class="form-control" placeholder="Email" value=model.email}}
       {{#if emailIsValid}}
       <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-      <span class="sr-only">(success)</span>
+      {{!-- <span class="sr-only">(success)</span> --}}
       {{/if}}
     </div>
 
-    <div class="form-group {{messageSuccess}} has-feedback">
+    <div class="form-group {{if model.messageIsValid 'has-success'}} has-feedback">
       <label>Your message</label>
-      {{textarea class="form-control" placeholder="Your message. (At least 5 characters.)" rows="7" value=message}}
+      {{textarea class="form-control" placeholder="Your message. (At least 5 characters.)" rows="7" value=model.message}}
       {{#if messageIsValid}}
       <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-      <span class="sr-only">(success)</span>
+      {{!-- <span class="sr-only">(success)</span> --}}
       {{/if}}
     </div>
     
-    <button class="btn btn-success" disabled={{isDisabled}} {{action 'sendMessage'}}>Send</button>
+    <button class="btn btn-success" disabled={{model.isDisabled}} {{action 'sendMessage' model}}>Send</button>
 
+    
+    {{/if}}
   </div>
 </div>
 

@@ -1,9 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  // isDisabled: true,
 
-  emailAddress: '',
+  headerMessage: 'Coming Soon?',
 
   isValid: Ember.computed.match('emailAddress', /^.+@.+\..+$/),
   isDisabled: Ember.computed.not('isValid'),
@@ -11,12 +10,18 @@ export default Ember.Controller.extend({
   actions: {
 
     saveInvitation() {
-      alert(`Saving of the following email address is in progress: ${this.get('emailAddress')}`);
-      this.set('responseMessage', `Thank you! we've just saved your email address: ${this.get('emailAddress')}`);
-      this.set('emailAddress', '');
+      const email = this.get('emailAddress');
+      let _this = this;
+
+      const newInvitation = this.store.createRecord('invitation', { email: email });
+      newInvitation.save().then((response) => {
+        this.set('responseMessage', `Thank you! we've just saved your email address with the following id: ${response.get('id')}`);
+        this.set('emailAddress', '');
+      });
+
+      Ember.run.later((function() {
+        _this.transitionToRoute('admin.invitations');
+      }), 5000)
     }
   }
-  // emailAddressChanged: Ember.observer('emailAddress', function() {
-  //   console.log('observer is called', this.get('emailAddress'));
-  // })
 });
